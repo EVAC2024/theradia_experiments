@@ -1,6 +1,6 @@
-from data_manager import *
-from experiment_manager import *
-from feature_manager import *
+from data_loader import *
+from exp_manager import *
+from feat_manager import *
 from lib import *
 from models import *
 from utils import *
@@ -9,9 +9,10 @@ import torch
 import pandas as pd
 from torch.nn.utils.rnn import pad_sequence
 
+
 # Define paths 
-base_dir = "/data/sauvegarde/"
-out_dir = '/data/safaa/baseline_exp/'
+base_dir = "/data/"
+out_dir = '/data/baseline_exp/'
 private_dataset_base = os.path.join(base_dir, "processed_theradia_data/private_dataset/")
 public_dataset_base = os.path.join(base_dir, "processed_theradia_data/public_dataset/")
 
