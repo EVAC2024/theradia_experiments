@@ -72,6 +72,16 @@ def add_target_label_class2(data, target_label="frustrated", threshold=2):
             target = 0
         datum["target"] = target
 
+def setup_partition_reg(data, target_label="frustrated", seed=0):
+    data_c = data.copy()
+    add_target_label(data_c, target_label)
+    data_c = equalise_dicts(data_c, "target", seed=seed)
+    #output_keys = ["ID", "video_path", "wav_path", "trs", "trs_google", "target"]
+    output_keys = ["ID", "video_path", "wav_path", "trs", "target"]
+
+    data_sb = sb.dataio.dataset.DynamicItemDataset(data_c, output_keys=output_keys)
+    return data_sb
+
 def setup_partition_class(data, target_label="frustrated", seed=0):
     data_c = data.copy()
     add_target_label_class2(data_c, target_label)
@@ -110,7 +120,7 @@ def add_target_label(data, target_label="frustrated", gs_method="m"):
             target = np.array([np.mean(target_values), np.std(target_values)])
         elif gs_method == "all":
             target = np.array(target_values)
-        datum["target2"] = target
+        datum["target"] = target
 
 def add_dims_summary_annots2(data, gs_method="m"):
     tar_dims = ["arousal", "novelty", "goal conduciveness", "intrinsic pleasantness", "coping"]

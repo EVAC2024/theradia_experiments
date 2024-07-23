@@ -28,12 +28,6 @@ Main Features:
     - Partitioning of data into training, development, and test sets.
     - Filtering of annotations to include only specified users.
     - Automatic Speech Recognition (ASR) transcription using Google ASR.
-
-Usage:
-This module should be imported and utilized within the context of a larger experimental framework, where it can 
-manage the loading, preprocessing, and indexing stages of different machine learning experiments involving the 
-Theradia dataset.
-
 """
 
 
@@ -81,16 +75,16 @@ class TheradiaDataLoader:
             subject_id, session_id = ID.split('_')[0], ID.split('_')[1]
             base_path = self.determine_base_path(partition)
             subject_folder = f"{subject_id[0]}-subjects/{subject_id}"
-            subject_folder2 = f"processed-audio-{subject_id[0]}-subjects/{subject_id}"
+            subject_folder2 = f"processed-audio-{subject_id[0]}-subjects/{subject_id}" ## path to resampled audios (44->16)
 
             session_folder = f"{subject_id}_seance_{session_id}"
             subject_path = os.path.join(base_path, subject_folder)
             subject_path2 = os.path.join(base_path, subject_folder2)
-
+ 
             correct_seance_folder = self.find_correct_seance_folder(subject_path, session_id)
             full_path = os.path.join(subject_path, correct_seance_folder)
             full_path2 = os.path.join(subject_path2, correct_seance_folder)
-
+            
             video_path = os.path.join(full_path, 'Video', 'video_segments_farfield')
             annots_path = os.path.join(full_path, 'Annotations')
             transcripts_logs_path = os.path.join(full_path, 'Transcripts and Logs')

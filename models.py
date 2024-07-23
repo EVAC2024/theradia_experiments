@@ -28,10 +28,6 @@ Main Features:
     - Support for multimodal inputs and attention mechanisms.
     - Encapsulation of common machine learning model components.
 
-Usage:
-This module should be imported and utilized within the context of a larger experimental framework, where it can 
-define and manage the machine learning models and loss functions for different experiments.
-
 """
 
 class myLin(nn.Module):
@@ -161,12 +157,12 @@ class MSEWrapper(nn.Module):
     def forward(self, outputs, targets, length=None):
         if type(targets) == sb.dataio.batch.PaddedData:
             targets = targets[0]
-        if targets.size()[1] == 1:
-            targets = targets.squeeze(1)
-        outputs = outputs.squeeze(1)
+        #if targets.size()==1:targets = targets.squeeze(1)
+        #outputs = outputs.squeeze(1)
         targets = targets.float()
         predictions = outputs
         loss = self.criterion(predictions, targets)
+
         return loss
 
 class CEWrapper(nn.Module):
@@ -176,7 +172,9 @@ class CEWrapper(nn.Module):
 
     def forward(self, outputs, targets, length=None):
         outputs = outputs.squeeze(1)
-        targets = torch.tensor(targets, device='cuda:0').squeeze(1)
+        #targets = torch.tensor(targets, device='cuda:0').squeeze(1)
+        targets = torch.tensor(targets, device='cpu').squeeze(1)
+
         loss = 1 - self.criterion(outputs, targets)
         return loss
 

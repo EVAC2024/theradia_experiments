@@ -251,7 +251,7 @@ class expBrain(sb.Brain):
         (loss / self.hparams.run_opts["grad_accumulation_factor"]).backward()
 
         if self.step % self.hparams.run_opts["grad_accumulation_factor"] == 0:
-            self.check_gradients(loss)
+            self.check_gradients()
             self.optimizer.step()
             self.optimizer.zero_grad()
 
@@ -285,7 +285,6 @@ class expBrain(sb.Brain):
         """
         if stage == sb.Stage.TRAIN:
             self.train_loss = stage_loss
-
         else:
             stats = {"loss": stage_loss}
 
@@ -295,7 +294,7 @@ class expBrain(sb.Brain):
                 train_stats={"loss": self.train_loss},
                 valid_stats=stats,
             )
-            
+
             if self.hparams.epoch_counter.should_stop(current=epoch, current_metric=stage_loss):
                 self.hparams.epoch_counter.current = self.hparams.epoch_counter.limit
 
