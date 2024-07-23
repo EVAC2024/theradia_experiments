@@ -6,11 +6,11 @@ This repository contains scripts for labels presence and intensity prediction, a
 
 - `utils.py`: Utilities Module
 
-- `data_manager.py`: Contains the `TheradiaDataLoader` class, which is responsible for loading, preprocessing, and managing the Theradia dataset. 
+- `data_loader.py`: Contains the `TheradiaDataLoader` class, which is responsible for loading, preprocessing, and managing the Theradia dataset. 
 
-- `experiment_manager.py`: Manages the setup and execution of experiments. 
+- `exp_manager.py`: Manages the setup and execution of experiments. 
 
-- `feature_manager.py`: Handles feature extraction for various data types, including audio, video, and text. 
+- `feat_manager.py`: Handles feature extraction for various data types, including audio, video, and text. 
 
 - `models.py`: Defines various machine learning models and loss functions used in the experiments.
 
