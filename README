@@ -14,7 +14,7 @@ This repository contains scripts for labels presence and intensity prediction, a
 
 - `models.py`: Defines various machine learning models and loss functions used in the experiments.
 
-- `experiments.py`: main file for task1 and task2 prediction.
+- `main.py`: main file for task1 and task2 prediction.
 
 
 ### Prerequisites
